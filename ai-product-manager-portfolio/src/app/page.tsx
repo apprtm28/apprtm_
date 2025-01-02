@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 // Animation variants
 const fadeInUp = {
@@ -29,6 +30,8 @@ const scrollToSection = (sectionId: string) => {
 };
 
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <div className="flex flex-col min-h-screen font-[family-name:var(--font-geist-sans)]">
       {/* Navbar */}
@@ -42,7 +45,36 @@ export default function Home() {
           <Link href="/" className="text-xl font-bold">
             Agung Pratama
           </Link>
-          <div className="space-x-4">
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              {isMenuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
+          {/* Desktop menu */}
+          <div className="hidden md:flex space-x-4">
             <Link
               href="#about"
               onClick={(e) => {
@@ -79,6 +111,63 @@ export default function Home() {
             </button>
           </div>
         </div>
+        {/* Mobile menu */}
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="md:hidden absolute top-full left-0 right-0 bg-gray-800 p-4 flex flex-col space-y-4"
+          >
+            <Link
+              href="#about"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("about");
+                setIsMenuOpen(false);
+              }}
+              className="hover:text-gray-300"
+            >
+              About
+            </Link>
+            <button
+              onClick={() => {
+                scrollToSection("skills");
+                setIsMenuOpen(false);
+              }}
+              className="hover:text-gray-300 text-left"
+            >
+              Skills
+            </button>
+            <button
+              onClick={() => {
+                scrollToSection("achievements");
+                setIsMenuOpen(false);
+              }}
+              className="hover:text-gray-300 text-left"
+            >
+              Achievements
+            </button>
+            <button
+              onClick={() => {
+                scrollToSection("testimonials");
+                setIsMenuOpen(false);
+              }}
+              className="hover:text-gray-300 text-left"
+            >
+              Testimonials
+            </button>
+            <button
+              onClick={() => {
+                scrollToSection("contact");
+                setIsMenuOpen(false);
+              }}
+              className="hover:text-gray-300 text-left"
+            >
+              Contact
+            </button>
+          </motion.div>
+        )}
       </motion.nav>
 
       {/* Main content */}
@@ -88,7 +177,7 @@ export default function Home() {
           initial="hidden"
           animate="visible"
           variants={staggerChildren}
-          className="text-center mb-16"
+          className="text-center mb-16 px-4"
         >
           <motion.div variants={fadeInUp} className="mb-6">
             <motion.div
@@ -100,19 +189,19 @@ export default function Home() {
                 alt="Agung Pratama"
                 width={200}
                 height={200}
-                className="rounded-full mx-auto border-4 border-gray-300 shadow-lg object-cover"
+                className="rounded-full mx-auto border-4 border-gray-300 shadow-lg object-cover w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56"
               />
             </motion.div>
           </motion.div>
-          <motion.h1 variants={fadeInUp} className="text-4xl font-bold mb-2">
+          <motion.h1 variants={fadeInUp} className="text-3xl md:text-4xl font-bold mb-2">
             Agung Pratama
           </motion.h1>
-          <motion.p variants={fadeInUp} className="text-xl text-gray-600 mb-4">
+          <motion.p variants={fadeInUp} className="text-lg md:text-xl text-gray-600 mb-4">
             Lead Product Manager | Growth, Automation, & Analytics Specialist
           </motion.p>
           <motion.p
             variants={fadeInUp}
-            className="text-lg max-w-2xl mx-auto mb-4"
+            className="text-base md:text-lg max-w-2xl mx-auto mb-4 px-4"
           >
             Dedicated Lead Product Manager with expertise in e-commerce and OTA,
             focusing on data-driven decision-making, automation, and scalability.
@@ -128,10 +217,10 @@ export default function Home() {
           viewport={{ once: true, margin: "-100px" }}
           variants={fadeInUp}
           id="about"
-          className="mb-16"
+          className="mb-16 px-4"
         >
-          <h2 className="text-2xl font-bold mb-4">About Me</h2>
-          <p className="text-lg">
+          <h2 className="text-xl md:text-2xl font-bold mb-4">About Me</h2>
+          <p className="text-base md:text-lg">
             Currently leading multiple transport verticals at Tiket.com, I bring
             a wealth of experience in product development, data analytics, and
             strategic automation. I've successfully launched new verticals and
@@ -148,12 +237,12 @@ export default function Home() {
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerChildren}
           id="skills"
-          className="mb-16"
+          className="mb-16 px-4"
         >
-          <motion.h2 variants={fadeInUp} className="text-2xl font-bold mb-4">
+          <motion.h2 variants={fadeInUp} className="text-xl md:text-2xl font-bold mb-4">
             Skills & Expertise
           </motion.h2>
-          <motion.ul className="list-disc list-inside text-lg">
+          <motion.ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-base md:text-lg">
             {[
               "Strategic Product Development",
               "Data Analytics & Dynamic Pricing",
@@ -165,8 +254,9 @@ export default function Home() {
               <motion.li
                 key={index}
                 variants={fadeInUp}
-                className="hover:text-blue-600 transition-colors duration-300"
+                className="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
               >
+                <span className="h-2 w-2 rounded-full bg-blue-500 mr-3"></span>
                 {skill}
               </motion.li>
             ))}
@@ -180,12 +270,12 @@ export default function Home() {
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerChildren}
           id="tools"
-          className="mb-16"
+          className="mb-16 px-4"
         >
-          <motion.h2 variants={fadeInUp} className="text-2xl font-bold mb-4">
+          <motion.h2 variants={fadeInUp} className="text-xl md:text-2xl font-bold mb-4">
             Specialized Tools and Technologies
           </motion.h2>
-          <motion.ul className="grid grid-cols-3 gap-4 text-lg">
+          <motion.ul className="grid grid-cols-2 md:grid-cols-3 gap-3 text-base md:text-lg">
             {[
               "SQL",
               "MongoDB",
@@ -202,10 +292,10 @@ export default function Home() {
               <motion.li
                 key={index}
                 variants={fadeInUp}
-                whileHover={{ scale: 1.05 }}
-                className="flex items-center"
+                whileHover={{ scale: 1.02 }}
+                className="flex items-center p-3 bg-gray-50 rounded-lg"
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-black mr-2"></span>
+                <span className="h-1.5 w-1.5 rounded-full bg-blue-500 mr-2"></span>
                 {tool}
               </motion.li>
             ))}
@@ -219,79 +309,104 @@ export default function Home() {
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerChildren}
           id="achievements"
-          className="mb-16"
+          className="mb-16 px-4"
         >
-          <motion.h2 variants={fadeInUp} className="text-2xl font-bold mb-4">
+          <motion.h2 variants={fadeInUp} className="text-xl md:text-2xl font-bold mb-4">
             Achievement Highlights
           </motion.h2>
-          <motion.ul variants={fadeInUp} className="list-disc list-inside text-lg">
-            {/* Tiket.com */}
-            <li>
-              🚀 Led the launch of two major transport verticals at Tiket.com,
-              driving daily revenue in billions of IDR and serving thousands of
-              passengers monthly.
-            </li>
-            <li>
-              📈 Boosted train insurance revenue by multiple times and
-              significantly increased vertical revenue through dynamic pricing
-              and rule-based strategies.
-            </li>
-            <li>
-              💡 Streamlined analytics processes, achieving 5x productivity for
-              engineering teams and enabling seamless machine learning model
-              integrations.
-            </li>
-            <li>
-              🔄 Enhanced user experience with optimized data points, leading to
-              reduced conversion time and a notable improvement in CS efficiency.
-            </li>
-            <li>
-              📦 Pioneered a data-driven platform for critical operations,
-              shifting analytics to become a core part of revenue-driving
-              efforts.
-            </li>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Tiket.com Achievements */}
+            <motion.div variants={fadeInUp} className="bg-white rounded-lg shadow-md p-6 border border-gray-100">
+              <h3 className="text-lg font-semibold mb-3 flex items-center">
+                <span className="text-xl mr-2">🎫</span>
+                Tiket.com
+              </h3>
+              <ul className="space-y-3">
+                <li className="flex items-start space-x-3">
+                  <span className="text-blue-500 flex-shrink-0">•</span>
+                  <span>Led the launch of two major transport verticals, driving billions in daily revenue</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-blue-500 flex-shrink-0">•</span>
+                  <span>Boosted train insurance revenue through dynamic pricing strategies</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-blue-500 flex-shrink-0">•</span>
+                  <span>Achieved 5x productivity boost through streamlined analytics processes</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-blue-500 flex-shrink-0">•</span>
+                  <span>Enhanced UX with optimized data points and improved CS efficiency</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-blue-500 flex-shrink-0">•</span>
+                  <span>Pioneered data-driven platform for critical operations</span>
+                </li>
+              </ul>
+            </motion.div>
 
-            {/* Tokopedia */}
-            <li>
-              🚚 Enhanced Tokopedia's Seller Fulfillment Platform by building new
-              features and improving existing functionalities to optimize seller
-              and customer satisfaction.
-            </li>
+            {/* Tokopedia & Lion Parcel Achievements */}
+            <motion.div variants={fadeInUp} className="bg-white rounded-lg shadow-md p-6 border border-gray-100">
+              <h3 className="text-lg font-semibold mb-3 flex items-center">
+                <span className="text-xl mr-2">🛍️</span>
+                Tokopedia & Lion Parcel
+              </h3>
+              <ul className="space-y-3">
+                <li className="flex items-start space-x-3">
+                  <span className="text-blue-500 flex-shrink-0">•</span>
+                  <span>Enhanced Seller Fulfillment Platform with new features and optimizations</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-blue-500 flex-shrink-0">•</span>
+                  <span>Led cross-functional project squad integrating digital-first approach</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-blue-500 flex-shrink-0">•</span>
+                  <span>Significantly improved customer satisfaction and user experience</span>
+                </li>
+              </ul>
+            </motion.div>
 
-            {/* Lion Parcel */}
-            <li>
-              🦁 Spearheaded a cross-functional project squad at Lion Parcel,
-              integrating a digital-first approach that significantly increased
-              customer satisfaction and streamlined user experience.
-            </li>
+            {/* Sorabel Achievements */}
+            <motion.div variants={fadeInUp} className="bg-white rounded-lg shadow-md p-6 border border-gray-100">
+              <h3 className="text-lg font-semibold mb-3 flex items-center">
+                <span className="text-xl mr-2">👗</span>
+                Sorabel
+              </h3>
+              <ul className="space-y-3">
+                <li className="flex items-start space-x-3">
+                  <span className="text-blue-500 flex-shrink-0">•</span>
+                  <span>Developed enterprise solutions ensuring seamless operational flows</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-blue-500 flex-shrink-0">•</span>
+                  <span>Implemented data-driven alerting systems for proactive decision-making</span>
+                </li>
+              </ul>
+            </motion.div>
 
-            {/* Sorabel */}
-            <li>
-              🛒 Developed Sorabel's enterprise solutions, ensuring best
-              practices for seamless operational flows and responsive tech
-              support, and implemented data-driven alerting systems for proactive
-              decision-making.
-            </li>
-
-            {/* Jualo.com */}
-            <li>
-              💼 Boosted Jualo.com's feature engagement through backlog
-              prioritization, feature performance analysis, and collaboration
-              with UI/UX to elevate the product experience.
-            </li>
-            <li>
-              🎯 Achieved KPIs in user engagement, core feature usage, and
-              monetization by translating business goals into effective product
-              requirements and enhancements.
-            </li>
-
-            {/* Grab */}
-            <li>
-              🚗 Drove Grab's e-commerce and driver referral initiatives,
-              aligning cross-functional teams to enhance merchant acquisition,
-              and executed promotional strategies to boost engagement and sales.
-            </li>
-          </motion.ul>
+            {/* Jualo & Grab Achievements */}
+            <motion.div variants={fadeInUp} className="bg-white rounded-lg shadow-md p-6 border border-gray-100">
+              <h3 className="text-lg font-semibold mb-3 flex items-center">
+                <span className="text-xl mr-2">🚗</span>
+                Jualo & Grab
+              </h3>
+              <ul className="space-y-3">
+                <li className="flex items-start space-x-3">
+                  <span className="text-blue-500 flex-shrink-0">•</span>
+                  <span>Boosted feature engagement through strategic backlog prioritization</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-blue-500 flex-shrink-0">•</span>
+                  <span>Achieved KPIs in user engagement and core feature usage</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-blue-500 flex-shrink-0">•</span>
+                  <span>Led e-commerce and driver referral initiatives at Grab</span>
+                </li>
+              </ul>
+            </motion.div>
+          </div>
         </motion.section>
 
         {/* Company Logos section */}
