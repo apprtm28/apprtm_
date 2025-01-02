@@ -33,7 +33,7 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="flex flex-col min-h-screen font-[family-name:var(--font-geist-sans)]">
+    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-900 font-[family-name:var(--font-geist-sans)]">
       {/* Navbar */}
       <motion.nav
         initial={{ y: -100 }}
@@ -171,7 +171,7 @@ export default function Home() {
       </motion.nav>
 
       {/* Main content */}
-      <main className="flex-grow container mx-auto px-4 py-8">
+      <main className="flex-grow container mx-auto px-4 py-8 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
         {/* Hero section */}
         <motion.section
           initial="hidden"
@@ -293,7 +293,7 @@ export default function Home() {
                 key={index}
                 variants={fadeInUp}
                 whileHover={{ scale: 1.02 }}
-                className="flex items-center p-3 bg-gray-50 rounded-lg"
+                className="flex items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-blue-500 mr-2"></span>
                 {tool}
@@ -316,93 +316,93 @@ export default function Home() {
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Tiket.com Achievements */}
-            <motion.div variants={fadeInUp} className="bg-white rounded-lg shadow-md p-6 border border-gray-100">
+            <motion.div variants={fadeInUp} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-100 dark:border-gray-700">
               <h3 className="text-lg font-semibold mb-3 flex items-center">
                 <span className="text-xl mr-2">🎫</span>
-                Tiket.com
+                <span className="dark:text-gray-100">Tiket.com</span>
               </h3>
               <ul className="space-y-3">
                 <li className="flex items-start space-x-3">
                   <span className="text-blue-500 flex-shrink-0">•</span>
-                  <span>Led the launch of two major transport verticals, driving billions in daily revenue</span>
+                  <span className="dark:text-gray-300">Led the launch of two major transport verticals, driving billions in daily revenue</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <span className="text-blue-500 flex-shrink-0">•</span>
-                  <span>Boosted train insurance revenue through dynamic pricing strategies</span>
+                  <span className="dark:text-gray-300">Boosted train insurance revenue through dynamic pricing strategies</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <span className="text-blue-500 flex-shrink-0">•</span>
-                  <span>Achieved 5x productivity boost through streamlined analytics processes</span>
+                  <span className="dark:text-gray-300">Achieved 5x productivity boost through streamlined analytics processes</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <span className="text-blue-500 flex-shrink-0">•</span>
-                  <span>Enhanced UX with optimized data points and improved CS efficiency</span>
+                  <span className="dark:text-gray-300">Enhanced UX with optimized data points and improved CS efficiency</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <span className="text-blue-500 flex-shrink-0">•</span>
-                  <span>Pioneered data-driven platform for critical operations</span>
+                  <span className="dark:text-gray-300">Pioneered data-driven platform for critical operations</span>
                 </li>
               </ul>
             </motion.div>
 
             {/* Tokopedia & Lion Parcel Achievements */}
-            <motion.div variants={fadeInUp} className="bg-white rounded-lg shadow-md p-6 border border-gray-100">
+            <motion.div variants={fadeInUp} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-100 dark:border-gray-700">
               <h3 className="text-lg font-semibold mb-3 flex items-center">
                 <span className="text-xl mr-2">🛍️</span>
-                Tokopedia & Lion Parcel
+                <span className="dark:text-gray-100">Tokopedia & Lion Parcel</span>
               </h3>
               <ul className="space-y-3">
                 <li className="flex items-start space-x-3">
                   <span className="text-blue-500 flex-shrink-0">•</span>
-                  <span>Enhanced Seller Fulfillment Platform with new features and optimizations</span>
+                  <span className="dark:text-gray-300">Enhanced Seller Fulfillment Platform with new features and optimizations</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <span className="text-blue-500 flex-shrink-0">•</span>
-                  <span>Led cross-functional project squad integrating digital-first approach</span>
+                  <span className="dark:text-gray-300">Led cross-functional project squad integrating digital-first approach</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <span className="text-blue-500 flex-shrink-0">•</span>
-                  <span>Significantly improved customer satisfaction and user experience</span>
+                  <span className="dark:text-gray-300">Significantly improved customer satisfaction and user experience</span>
                 </li>
               </ul>
             </motion.div>
 
             {/* Sorabel Achievements */}
-            <motion.div variants={fadeInUp} className="bg-white rounded-lg shadow-md p-6 border border-gray-100">
+            <motion.div variants={fadeInUp} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-100 dark:border-gray-700">
               <h3 className="text-lg font-semibold mb-3 flex items-center">
                 <span className="text-xl mr-2">👗</span>
-                Sorabel
+                <span className="dark:text-gray-100">Sorabel</span>
               </h3>
               <ul className="space-y-3">
                 <li className="flex items-start space-x-3">
                   <span className="text-blue-500 flex-shrink-0">•</span>
-                  <span>Developed enterprise solutions ensuring seamless operational flows</span>
+                  <span className="dark:text-gray-300">Developed enterprise solutions ensuring seamless operational flows</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <span className="text-blue-500 flex-shrink-0">•</span>
-                  <span>Implemented data-driven alerting systems for proactive decision-making</span>
+                  <span className="dark:text-gray-300">Implemented data-driven alerting systems for proactive decision-making</span>
                 </li>
               </ul>
             </motion.div>
 
             {/* Jualo & Grab Achievements */}
-            <motion.div variants={fadeInUp} className="bg-white rounded-lg shadow-md p-6 border border-gray-100">
+            <motion.div variants={fadeInUp} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-100 dark:border-gray-700">
               <h3 className="text-lg font-semibold mb-3 flex items-center">
                 <span className="text-xl mr-2">🚗</span>
-                Jualo & Grab
+                <span className="dark:text-gray-100">Jualo & Grab</span>
               </h3>
               <ul className="space-y-3">
                 <li className="flex items-start space-x-3">
                   <span className="text-blue-500 flex-shrink-0">•</span>
-                  <span>Boosted feature engagement through strategic backlog prioritization</span>
+                  <span className="dark:text-gray-300">Boosted feature engagement through strategic backlog prioritization</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <span className="text-blue-500 flex-shrink-0">•</span>
-                  <span>Achieved KPIs in user engagement and core feature usage</span>
+                  <span className="dark:text-gray-300">Achieved KPIs in user engagement and core feature usage</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <span className="text-blue-500 flex-shrink-0">•</span>
-                  <span>Led e-commerce and driver referral initiatives at Grab</span>
+                  <span className="dark:text-gray-300">Led e-commerce and driver referral initiatives at Grab</span>
                 </li>
               </ul>
             </motion.div>
@@ -426,7 +426,7 @@ export default function Home() {
           </motion.h2>
           <motion.p
             variants={fadeInUp}
-            className="text-lg text-gray-600 mb-6 text-center"
+            className="text-lg text-gray-600 dark:text-gray-400 mb-6 text-center"
           >
             Collaborating with industry leaders to drive innovation and growth.
           </motion.p>
@@ -446,14 +446,14 @@ export default function Home() {
                 variants={fadeInUp}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex justify-center"
+                className="flex justify-center bg-white dark:bg-gray-800 p-4 rounded-lg"
               >
                 <Image
                   src={company.src}
                   alt={company.alt}
                   width={120}
                   height={120}
-                  className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                  className="object-contain filter dark:invert hover:grayscale-0 transition-all duration-300"
                 />
               </motion.a>
             ))}
@@ -471,7 +471,7 @@ export default function Home() {
         >
           <motion.h2
             variants={fadeInUp}
-            className="text-2xl font-bold mb-8 text-center"
+            className="text-2xl font-bold mb-8 text-center dark:text-gray-100"
           >
             What My Peers Say
           </motion.h2>
@@ -481,12 +481,12 @@ export default function Home() {
                 key={index}
                 variants={fadeInUp}
                 whileHover={{ scale: 1.02 }}
-                className="bg-white p-6 rounded-lg shadow-lg"
+                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
               >
-                <p className="text-gray-800 text-lg italic mb-4">
+                <p className="text-gray-800 dark:text-gray-200 text-lg italic mb-4">
                   {testimonial.text}
                 </p>
-                <p className="text-gray-600 text-sm text-right">
+                <p className="text-gray-600 dark:text-gray-400 text-sm text-right">
                   {testimonial.author}
                 </p>
               </motion.div>
@@ -503,8 +503,8 @@ export default function Home() {
           id="contact"
           className="text-center"
         >
-          <h2 className="text-2xl font-bold mb-4">Get in Touch</h2>
-          <p className="text-lg mb-4">
+          <h2 className="text-2xl font-bold mb-4 dark:text-gray-100">Get in Touch</h2>
+          <p className="text-lg mb-4 dark:text-gray-300">
             I'm open to new opportunities, insights sharing, or collaboration on
             innovative projects. Reach out through any of the channels below.
           </p>
